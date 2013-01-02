@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FxrateTest < ActiveSupport::TestCase
+class ForeignExchangeRateTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

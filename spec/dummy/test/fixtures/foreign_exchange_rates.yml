@@ -2,10 +2,10 @@
 
 one:
   fxdate: 2013-01-02
-  currency: MyString
   rate: 1.5
+  currency: MyString
 
 two:
   fxdate: 2013-01-02
-  currency: MyString
   rate: 1.5
+  currency: MyString
