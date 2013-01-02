@@ -1,6 +1,8 @@
 = FXrate
 
-Description goes here.
+To check out how the library works run Rails app from `spec/dummy`.
+
+To run tests: `rspec spec/`
 
 == Contributing to FXrate
  
