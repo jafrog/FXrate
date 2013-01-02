@@ -14,8 +14,8 @@ describe SQLiteStorage do
 
   describe "#get" do
     it "should return fx rate for given currency and date" do
-      SQLite3::Database.any_instance.should_receive(:execute) {1}
-      expect(@storage.get('GBP')).to eq 1
+      SQLite3::Database.any_instance.should_receive(:execute) {[[1]]}
+      expect(@storage.get('GBP')).to eq [1]
     end
   end
 
