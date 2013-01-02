@@ -1,8 +1,6 @@
 require 'date'
 
-require File.join(File.dirname(__FILE__), 'storages/sqlite_storage')
-
-require File.join(File.dirname(__FILE__), 'sources/ecbfeed')
+Dir["./lib/**/*.rb"].each {|file| require file }
 
 class FXrate
   class << self

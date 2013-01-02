@@ -1,4 +1,3 @@
-require './lib/storages/fx_storage'
 require 'sqlite3'
 
 class SQLiteStorage < FXStorage
