@@ -12,4 +12,5 @@ group :development do
   gem "jeweler", "~> 1.8.4"
   gem "rspec"
   gem "rspec-rails"
+  gem "rails", "~> 3.1"
 end
