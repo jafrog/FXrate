@@ -3,16 +3,16 @@
 
   <%= form_tag(root_path, :class => "form") do  %>
     <%= label_tag :date, "Date" %>
-    <%= text_field_tag :date, Date.today, :placeholder => Date.today %>
+    <%= text_field_tag :date, params[:date] || Date.today, :placeholder => Date.today %>
 
     <%= label_tag :amount, "Amount" %>
-    <%= text_field_tag :amount, nil, :placeholder => 100 %>
+    <%= text_field_tag :amount, params[:amount], :placeholder => 100 %>
 
     <%= label_tag :from, "From" %>
-    <%= select_tag :from, options_from_collection_for_select(@currencies, :id, :name) %>
+    <%= select_tag :from, options_for_select(@currencies, params[:from]) %>
 
     <%= label_tag :to, "To" %>
-    <%= select_tag :to, options_from_collection_for_select(@currencies, :id, :name) %>
+    <%= select_tag :to, options_for_select(@currencies, params[:to]) %>
 
     <br />
     <%= submit_tag "Submit", :class => 'btn' %>
@@ -20,5 +20,5 @@
 </div>
 
 <div class="span5 well result">
-  <p></p>
+  <h1><%= @result %></h1>
 </div>
