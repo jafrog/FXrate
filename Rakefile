@@ -2,6 +2,7 @@
 
 require 'rubygems'
 require 'bundler'
+
 begin
   Bundler.setup(:default, :development)
 rescue Bundler::BundlerError => e
@@ -25,23 +26,6 @@ Jeweler::Tasks.new do |gem|
 end
 Jeweler::RubygemsDotOrgTasks.new
 
-require 'rake/testtask'
-Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-end
-
-require 'rcov/rcovtask'
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-  test.rcov_opts << '--exclude "gems/*"'
-end
-
-task :default => :test
-
 require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
@@ -50,4 +34,16 @@ Rake::RDocTask.new do |rdoc|
   rdoc.title = "FXrate #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
+end
+
+namespace :db do
+  namespace :sqlite do
+    require File.join(File.dirname(__FILE__), 'lib/storages/sqlite_storage')
+    desc 'create sqlite db and tables'
+    task :migrate, :db_name do |t, args|
+      args.with_defaults :db_name => 'fxrate.db'
+      db = SQLite3::Database.new args[:db_name]
+      db.execute "create table fx_rates (fxdate integer, currency varchar(10), rate float);"
+    end
+  end
 end
