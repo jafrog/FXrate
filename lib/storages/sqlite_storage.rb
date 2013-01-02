@@ -1,6 +1,7 @@
+require './lib/storages/fx_storage'
 require 'sqlite3'
 
-class SQLiteStorage
+class SQLiteStorage < FXStorage
   attr_accessor :db
 
   def initialize db_name = 'fxrate.db'
@@ -12,11 +13,9 @@ class SQLiteStorage
   end
 
   def save data
-    data.each do |date, currencies|
-      currencies.each do |currency, rate|
-        @db.execute("INSERT INTO fx_rates (fxdate, currency, rate) VALUES (?, ?, ?)",
-                    [date.to_time.to_i, currency, rate])
-      end
+    super do |date, currency, rate|
+      @db.execute("INSERT INTO fx_rates (fxdate, currency, rate) VALUES (?, ?, ?)",
+                  [date.to_time.to_i, currency, rate])
     end
   end
 end
