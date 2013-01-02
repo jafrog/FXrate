@@ -1,0 +1,24 @@
+<div class="span5 offset1">
+  <h1>FX like never before</h1>
+
+  <%= form_tag(root_path, :class => "form") do  %>
+    <%= label_tag :date, "Date" %>
+    <%= text_field_tag :date, Date.today, :placeholder => Date.today %>
+
+    <%= label_tag :amount, "Amount" %>
+    <%= text_field_tag :amount, nil, :placeholder => 100 %>
+
+    <%= label_tag :from, "From" %>
+    <%= select_tag :from, options_from_collection_for_select(@currencies, :id, :name) %>
+
+    <%= label_tag :to, "To" %>
+    <%= select_tag :to, options_from_collection_for_select(@currencies, :id, :name) %>
+
+    <br />
+    <%= submit_tag "Submit", :class => 'btn' %>
+  <% end %>
+</div>
+
+<div class="span5 well result">
+  <p></p>
+</div>
