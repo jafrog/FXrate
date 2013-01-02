@@ -1,11 +1,11 @@
-class ActiveRecordStorage
+class ActiveRecordStorage < FXStorage
   def get currency, date = Date.today
-    FXrate.all :conditions => {:fxdate => date, :currency => currency}
+    ForeignExchangeRate.all(:conditions => {:fxdate => date, :currency => currency}).map(&:rate)
   end
 
   def save data
     super do |date, currency, rate|
-      FXrate.create :fxdate => date, :currency => currency, :rate => rate
+      ForeignExchangeRate.create :fxdate => date, :currency => currency, :rate => rate
     end
   end
 end
