@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fxdate: 2013-01-02
+  currency: MyString
+  rate: 1.5
+
+two:
+  fxdate: 2013-01-02
+  currency: MyString
+  rate: 1.5
