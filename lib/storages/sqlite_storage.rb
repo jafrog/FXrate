@@ -1,4 +1,5 @@
 require 'sqlite3'
+require File.join(File.dirname(__FILE__), 'fx_storage')
 
 class SQLiteStorage < FXStorage
   attr_accessor :db

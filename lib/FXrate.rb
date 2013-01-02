@@ -1,6 +1,9 @@
 require 'date'
 
-Dir["./lib/**/*.rb"].each {|file| require file }
+require 'sources/ecbfeed'
+
+require 'storages/fx_storage'
+require 'storages/sqlite_storage'
 
 class FXrate
   class << self
@@ -15,10 +18,10 @@ class FXrate
       base_currency_rate = @storage.get(base_currency, date)
       counter_currency_rate = @storage.get(counter_currency, date)
 
-      if counter_currency_rate && base_currency_rate
+      if counter_currency_rate && base_currency_rate && !counter_currency_rate.empty? && !base_currency_rate.empty?
         (counter_currency_rate.first / base_currency_rate.first).round(2)
       else
-        "No data found"
+        nil
       end
     end
 
